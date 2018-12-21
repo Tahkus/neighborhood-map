@@ -5,7 +5,8 @@ import axios from 'axios';
 class App extends Component {
 
   state = {
-    parks: []
+    parks: [],
+    markers: []
   }
   // Calls the getParks function upon component mounting
   componentDidMount() {
@@ -14,7 +15,7 @@ class App extends Component {
 
   // Calls the loadScript function and passes in the map URL & sets a value for window.initMap
   loadMap = () => {
-    loadScript("https://maps.googleapis.com/maps/api/js?key=AIzaSyAcgBeIy9cnFNxmWpk86oTwnJ8q1DU4K5c&callback=initMap")
+    loadScript("https://maps.googleapis.com/maps/api/js?key=AIzaSyC2NB0jjCy_fTBmCzzEIYhyKizuDFtq9aw&callback=initMap")
     window.initMap = this.initMap
   }
 
@@ -23,7 +24,7 @@ class App extends Component {
     const endPoint = "https://api.foursquare.com/v2/venues/explore?"
     const parameters = {
       client_id: "USTUADMKEHK5Y0XPNYZAD4GPEUDWCCDOEVF1B5024K4GAPBQ",
-      client_secret: "HXEMLEWRSPOGQPPBLBW1BE0GLOOBRW1AE2RCPHTCZ42FP1GL",
+      client_secret: "JDQW4ZEDYHWCD4DJVAQWL05YFL4J5KUKA1SDDV5BDPM0ZEM4",
       query: "park",
       near: "Richmond, CA",
       v: "20181221"
@@ -48,19 +49,25 @@ class App extends Component {
     });
 
     // Loop through the parks and create markers for each
-    this.state.parks.forEach(park => {
+    const markers = []
+
+    this.state.parks.map(park => {
       const position = {
         lat: park.venue.location.lat,
         lng: park.venue.location.lng
       };
+
       park.marker = new window.google.maps.Marker({
         map: map,
         position: position,
-        title: park.name,
+        title: park.venue.name,
         animation: window.google.maps.Animation.DROP,
         id: park.venue.id
       });
+      markers.push(park.marker)
+      return park
     })
+    this.setState({ markers })
   }
 
   render() {
@@ -73,8 +80,7 @@ class App extends Component {
   }
 }
 
-// Creates the script tag for map integration with React (will not work if simply
-// put in the index.html file as React won't be able to access it)
+// Creates the script tag for map integration with React (will not work if simply put in the index.html file as React won't be able to access it)
 function loadScript(url) {
   var index = window.document.getElementsByTagName("script")[0]
   var script = window.document.createElement("script")
