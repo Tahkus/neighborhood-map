@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import axios from 'axios';
 
 class App extends Component {
 
@@ -11,6 +11,24 @@ class App extends Component {
   loadMap = () => {
     loadScript("https://maps.googleapis.com/maps/api/js?key=AIzaSyAcgBeIy9cnFNxmWpk86oTwnJ8q1DU4K5c&callback=initMap")
     window.initMap = this.initMap
+  }
+
+  getParks = () => {
+    const endPoint = "https://api.foursquare.com/v2/venues/explore"
+    const parameters = {
+      client_id: "USTUADMKEHK5Y0XPNYZAD4GPEUDWCCDOEVF1B5024K4GAPBQ",
+      client_secret: "HXEMLEWRSPOGQPPBLBW1BE0GLOOBRW1AE2RCPHTCZ42FP1GL",
+      query: "parks",
+      near: "Richmond, CA"
+    }
+    //Requests parks from the endPoint and searches with specified parameters
+    axios.get(endPoint + new URLSearchParams(parameters))
+      .then(response => {
+        console.log(response)
+      })
+      .catch(error => {
+        console.log("Error! " + error)
+      })
   }
 
   initMap = () => {
@@ -30,6 +48,7 @@ class App extends Component {
   }
 }
 
+//Creates the script tag for integration with React
 function loadScript(url) {
   var index = window.document.getElementsByTagName("script")[0]
   var script = window.document.createElement("script")
