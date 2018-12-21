@@ -7,10 +7,9 @@ class App extends Component {
   state = {
     parks: []
   }
-  // Calls the loadMap function and getParks function upon component mounting
+  // Calls the getParks function upon component mounting
   componentDidMount() {
     this.getParks()
-    this.loadMap()
   }
 
   // Calls the loadScript function and passes in the map URL & sets a value for window.initMap
@@ -34,7 +33,7 @@ class App extends Component {
       .then(response => {
         this.setState({
           parks: response.data.response.groups[0].items
-        })
+        }, this.loadMap())
       })
       .catch(error => {
         console.log("Error! " + error)
@@ -47,6 +46,21 @@ class App extends Component {
       center: {lat: 37.9057947, lng: -122.2796843},
       zoom: 11
     });
+
+    // Loop through the parks and create markers for each
+    this.state.parks.forEach(park => {
+      const position = {
+        lat: park.venue.location.lat,
+        lng: park.venue.location.lng
+      };
+      park.marker = new window.google.maps.Marker({
+        map: map,
+        position: position,
+        title: park.name,
+        animation: window.google.maps.Animation.DROP,
+        id: park.venue.id
+      });
+    })
   }
 
   render() {
