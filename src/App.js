@@ -48,16 +48,25 @@ class App extends Component {
       zoom: 11
     });
 
-    // Loop through the parks and create markers for each one. Also create markers variable and 
-    // use it to set a markers state
     const markers = []
 
+    // Create an info window
+    const infoWindow = new window.google.maps.InfoWindow()
+
+    // Loop through the parks and create markers for each one. Also create markers variable and 
+    // use it to set a markers state
     this.state.parks.map(park => {
       const position = {
         lat: park.venue.location.lat,
         lng: park.venue.location.lng
       };
 
+      const contentString = `${park.venue.name} <br>
+      ${park.venue.location.formattedAddress[0]} <br>
+      ${park.venue.location.formattedAddress[1]}` 
+
+
+      // Create a marker
       park.marker = new window.google.maps.Marker({
         map: map,
         position,
@@ -65,6 +74,13 @@ class App extends Component {
         animation: window.google.maps.Animation.DROP,
         id: park.venue.id
       });
+
+      // Event listener to open the info window 
+      park.marker.addListener('click', function() {
+        infoWindow.setContent(contentString)
+        infoWindow.open(map, park.marker);
+      });
+
       markers.push(park.marker)
       return park
     })
