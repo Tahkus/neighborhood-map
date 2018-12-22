@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
 import axios from 'axios';
-import SideBar from './components/SideBar'
+import SideBar from './components/SideBar.js'
+import Header from './components/Header.js'
 
 class App extends Component {
 
@@ -90,10 +91,13 @@ class App extends Component {
 
   render() {
     return (
-      <main>
-        <div id="map">
-        </div>
-      </main>
+      <div className="App">
+        <main>
+          <Header />
+          <div id="map">
+          </div>
+        </main>
+      </div>
     );
   }
 }
