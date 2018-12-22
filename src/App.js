@@ -26,7 +26,7 @@ class App extends Component {
       client_id: "USTUADMKEHK5Y0XPNYZAD4GPEUDWCCDOEVF1B5024K4GAPBQ",
       client_secret: "JDQW4ZEDYHWCD4DJVAQWL05YFL4J5KUKA1SDDV5BDPM0ZEM4",
       query: "park",
-      near: "Richmond, CA",
+      ll: "37.9454901,-122.3220567",
       v: "20181221"
     }
     // Requests parks from the endPoint and searches with specified parameters
@@ -44,11 +44,12 @@ class App extends Component {
   // Initialize google map with location & zoom
   initMap = () => {
     const map = new window.google.maps.Map(document.getElementById('map'), {
-      center: {lat: 37.9057947, lng: -122.2796843},
+      center: {lat: 37.9454901, lng: -122.3220567},
       zoom: 11
     });
 
-    // Loop through the parks and create markers for each
+    // Loop through the parks and create markers for each one. Also create markers variable and 
+    // use it to set a markers state
     const markers = []
 
     this.state.parks.map(park => {
@@ -59,7 +60,7 @@ class App extends Component {
 
       park.marker = new window.google.maps.Marker({
         map: map,
-        position: position,
+        position,
         title: park.venue.name,
         animation: window.google.maps.Animation.DROP,
         id: park.venue.id
