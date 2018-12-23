@@ -43,7 +43,7 @@ button:hover {
 }
 
 .parks-list {
-  padding: 5px;
+  padding: 0px 5px;
   text-align: left;
   font-size: 14px;
   list-style-type: none;
@@ -53,4 +53,28 @@ button:hover {
 
 .parks-list li:hover {
   color: #f9d764;
+}
+
+.filter-bar {
+  padding: 5px;
+}
+
+.filter-bar input {
+  width: 95%;
+  font-size: 14px;
+}
+
+.filter-input {
+  display: inline-block;
+  margin-left: 5px;
+  width: 90%;
+}
+
+.icon-wrapper {
+  float: left;
+}
+
+.search-icon {
+  font-size: 14px;
+  color: white;
 }
