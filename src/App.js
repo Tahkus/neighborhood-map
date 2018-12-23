@@ -99,6 +99,7 @@ class App extends Component {
       <div className="App">
         <main>
           <Header />
+          <SideBar parks={this.state.markers}/>
           <div id="map">
           </div>
         </main>
