@@ -3,6 +3,11 @@ import './App.css';
 import axios from 'axios';
 import SideBar from './components/SideBar.js'
 import Header from './components/Header.js'
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faBars } from '@fortawesome/free-solid-svg-icons'
+
+library.add(faBars)
+
 
 class App extends Component {
 
