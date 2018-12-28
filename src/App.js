@@ -96,7 +96,8 @@ class App extends Component {
         position,
         title: park.venue.name,
         animation: window.google.maps.Animation.DROP,
-        id: park.venue.id
+        id: park.venue.id,
+        formattedAddress: park.venue.location.formattedAddress
       });
 
       // Event listener to open the info window 
@@ -115,7 +116,9 @@ class App extends Component {
   onListClick = (item) => {
     const markers = this.state.markers
     const filterMarker = markers.filter((marker) => marker.id === item.id)[0]
-    const contentString = `${filterMarker.title}` 
+    const contentString = `${filterMarker.title} <br>
+    ${filterMarker.formattedAddress[0]} <br>
+    ${filterMarker.formattedAddress[1]}` 
     const infoWindow = new window.google.maps.InfoWindow()
 
     filterMarker.setAnimation(window.google.maps.Animation.BOUNCE)
