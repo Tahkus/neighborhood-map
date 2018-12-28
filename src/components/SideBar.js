@@ -6,18 +6,18 @@ import Filter from './Filter.js'
 
 class SideBar extends Component {
 
-	render() {
-		return (
-			<div className="side-bar">
-				<Filter />
-				<ol className="parks-list">
-					{this.props.parks.map(park =>
-						<ListItem key={park.id} park={park}/>
-					)}
-				</ol>
-			</div>
-		)
-	}
+  render() {
+	return (
+	  <div className="side-bar">
+	    <Filter parks={this.props.parks}/>
+	    <ol className="parks-list">
+		  {this.props.parks.map(park =>
+		    <ListItem key={park.id} park={park}/>
+		  )}
+	    </ol>
+	  </div>
+	)
+  }
 }
 
 export default SideBar

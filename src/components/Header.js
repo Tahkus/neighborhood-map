@@ -8,7 +8,7 @@ class Header extends Component {
 	render() {
 		return (
 			<div className="header">
-				<button>
+				<button onClick={this.props.updateSideBar}>
 					<FontAwesomeIcon
 						icon="bars"
 					/>			

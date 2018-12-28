@@ -13,8 +13,12 @@ class App extends Component {
 
   state = {
     parks: [],
-    markers: []
+    markers: [],
+    query: '',
+    showSideBar: true,
+    mapFull: false
   }
+
   // Calls the getParks function upon component mounting
   componentDidMount() {
     this.getParks()
@@ -46,6 +50,16 @@ class App extends Component {
       .catch(error => {
         console.log("Error! " + error)
       })
+  }
+
+  // Update showSideBar state
+  sideBarState = () => {
+    this.state.showSideBar ? this.setState({showSideBar: false}) : this.setState({showSideBar: true})
+  }
+
+  // Filter parks
+  filterParks = (query) => {
+
   }
 
   // Initialize google map with location & zoom
@@ -95,13 +109,14 @@ class App extends Component {
   }
 
   render() {
+    const sideBar = this.state.showSideBar;
+
     return (
       <div className="App">
         <main>
-          <Header />
-          <SideBar parks={this.state.markers}/>
-          <div id="map">
-          </div>
+          <Header updateSideBar={this.sideBarState} />
+          {sideBar && <SideBar showSideBar={this.showSideBar} parks={this.state.markers} />}
+          {sideBar ? <div id="map"></div> : <div id="map-full"></div>}
         </main>
       </div>
     );
