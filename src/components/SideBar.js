@@ -12,7 +12,7 @@ class SideBar extends Component {
 	    <Filter parks={this.props.parks}/>
 	    <ol className="parks-list">
 		  {this.props.parks.map(park =>
-		    <ListItem key={park.id} park={park}/>
+		    <ListItem key={park.id} park={park} onListClick={this.props.onListClick} />
 		  )}
 	    </ol>
 	  </div>

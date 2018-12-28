@@ -6,7 +6,7 @@ class ListItem extends Component {
 
 	render() {
 		return (
-			<li className="list-item">{this.props.park.title}</li>
+			<li className="list-item" onClick={() => this.props.onListClick(this.props.park)}>{this.props.park.title}</li>
 		)
 	}
 }

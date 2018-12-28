@@ -108,6 +108,15 @@ class App extends Component {
     this.setState({ markers })
   }
 
+  // Animate marker when list item is clicked
+  onListClick = (item) => {
+    const markers = this.state.markers
+    const filterMarker = markers.filter((marker) => marker.id === item.id)[0]
+
+    filterMarker.setAnimation(window.google.maps.Animation.BOUNCE)
+    setTimeout(() => {filterMarker.setAnimation(-1)}, 1400)
+  }
+
   render() {
     const sideBar = this.state.showSideBar;
 
@@ -115,7 +124,7 @@ class App extends Component {
       <div className="App">
         <main>
           <Header updateSideBar={this.sideBarState} />
-          {sideBar && <SideBar showSideBar={this.showSideBar} parks={this.state.markers} />}
+          {sideBar && <SideBar onListClick={this.onListClick} showSideBar={this.showSideBar} parks={this.state.markers} /* onListClick={this.onListClick}*/ />}
           {sideBar ? <div id="map"></div> : <div id="map-full"></div>}
         </main>
       </div>
