@@ -12,6 +12,7 @@ library.add(faBars, faSearch)
 class App extends Component {
 
   state = {
+    map: null,
     parks: [],
     markers: [],
     query: '',
@@ -69,6 +70,8 @@ class App extends Component {
       zoom: 11
     });
 
+    this.setState({ map })
+
     const markers = []
 
     // Create an info window
@@ -112,9 +115,13 @@ class App extends Component {
   onListClick = (item) => {
     const markers = this.state.markers
     const filterMarker = markers.filter((marker) => marker.id === item.id)[0]
+    const contentString = `${filterMarker.title}` 
+    const infoWindow = new window.google.maps.InfoWindow()
 
     filterMarker.setAnimation(window.google.maps.Animation.BOUNCE)
     setTimeout(() => {filterMarker.setAnimation(-1)}, 1400)
+    infoWindow.setContent(contentString)
+    infoWindow.open(this.state.map, filterMarker);
   }
 
   render() {
