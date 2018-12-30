@@ -16,7 +16,8 @@ class App extends Component {
     parks: [],
     markers: [],
     showSideBar: true,
-    mapFull: false
+    mapFull: false,
+    query: ''
   }
 
   // Calls the getParks function upon component mounting
@@ -57,22 +58,24 @@ class App extends Component {
     this.state.showSideBar ? this.setState({showSideBar: false}) : this.setState({showSideBar: true})
   }
 
-// Filter parks
-  filterParks = (query) => {
-    let parks
+/*  // Update query
+  updateQuery = (query) => {
+    this.setState({ query: query.trim() }, console.log(this.state.query))
+  }
+*/
+  // Update active markers array
+  updateMarkers = (query) => {
+    const activeMarkers = this.state.markers
     if (query) {
-      parks = this.state.markers.filter((park) => park.title.toLowerCase().includes(query.toLowerCase()));
+      activeMarkers.forEach((marker) => {
+        marker.title.toLowerCase().includes(query.toLowerCase()) ?
+          marker.setMap(this.state.map) : marker.setMap(null)
+      })
     } else {
-      parks = this.state.markers
+        activeMarkers.forEach((marker) => {
+          marker.setMap(this.state.map)
+        })
     }
-
-    this.state.markers.forEach(marker => {
-      marker.title.toLowerCase().includes(query.toLowerCase()) === true ? 
-      marker.setMap(this.state.map) :
-      marker.setMap(null)
-    })
-
-    this.setState({ markers: parks })
   }
 
   // Initialize google map with location & zoom
@@ -84,7 +87,7 @@ class App extends Component {
 
     this.setState({ map })
 
-    const markers = []
+    let markers = []
 
     // Create an info window
     const infoWindow = new window.google.maps.InfoWindow()
@@ -146,7 +149,7 @@ class App extends Component {
       <div className="App">
         <main>
           <Header updateSideBar={this.sideBarState} />
-          {sideBar && <SideBar onListClick={this.onListClick} filterParks={this.filterParks} showSideBar={this.showSideBar} parks={this.state.markers} /* onListClick={this.onListClick}*/ />}
+          {sideBar && <SideBar onListClick={this.onListClick} showSideBar={this.showSideBar} parks={this.state.markers} showingParks={this.state.showingParks} updateMarkers={this.updateMarkers} />}
           {sideBar ? <div id="map"></div> : <div id="map-full"></div>}
         </main>
       </div>
