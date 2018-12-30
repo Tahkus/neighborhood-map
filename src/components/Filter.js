@@ -9,6 +9,9 @@ class Filter extends Component {
 		query: ''
 	}
 
+	updateQuery = (query) => {
+		this.setState({ query: query }, this.props.filterParks(this.state.query))
+	}
 
 	render() {
 		return (
@@ -17,7 +20,7 @@ class Filter extends Component {
 					<FontAwesomeIcon icon="search" className="search-icon"/>
 				</div>
 				<div className="filter-input">
-					<input type="text" /*value={this.state.query}*/ placeholder="Enter search (e.g. Alvarado)"/>
+					<input type="text" value={this.state.query} placeholder="Enter search (e.g. Alvarado)" onChange={(e) => this.updateQuery(e.target.value)}/>
 				</div>
 			</div>
 		)

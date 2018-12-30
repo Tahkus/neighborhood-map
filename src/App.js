@@ -15,7 +15,6 @@ class App extends Component {
     map: null,
     parks: [],
     markers: [],
-    query: '',
     showSideBar: true,
     mapFull: false
   }
@@ -58,9 +57,22 @@ class App extends Component {
     this.state.showSideBar ? this.setState({showSideBar: false}) : this.setState({showSideBar: true})
   }
 
-  // Filter parks
+// Filter parks
   filterParks = (query) => {
+    let parks
+    if (query) {
+      parks = this.state.markers.filter((park) => park.title.toLowerCase().includes(query.toLowerCase()));
+    } else {
+      parks = this.state.markers
+    }
 
+    this.state.markers.forEach(marker => {
+      marker.title.toLowerCase().includes(query.toLowerCase()) === true ? 
+      marker.setMap(this.state.map) :
+      marker.setMap(null)
+    })
+
+    this.setState({ markers: parks })
   }
 
   // Initialize google map with location & zoom
@@ -134,7 +146,7 @@ class App extends Component {
       <div className="App">
         <main>
           <Header updateSideBar={this.sideBarState} />
-          {sideBar && <SideBar onListClick={this.onListClick} showSideBar={this.showSideBar} parks={this.state.markers} /* onListClick={this.onListClick}*/ />}
+          {sideBar && <SideBar onListClick={this.onListClick} filterParks={this.filterParks} showSideBar={this.showSideBar} parks={this.state.markers} /* onListClick={this.onListClick}*/ />}
           {sideBar ? <div id="map"></div> : <div id="map-full"></div>}
         </main>
       </div>
