@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import '../App.css';
 import ListItem from './ListItem.js'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import escapeRegExp from 'escape-string-regexp'
 import sortBy from 'sort-by'
 
@@ -30,11 +29,8 @@ class SideBar extends Component {
 		return (
 		    <div className="side-bar">
 		    	<div className="filter-bar">
-					<div className="icon-wrapper">
-						<FontAwesomeIcon icon="search" className="search-icon"/>
-					</div>
 					<div className="filter-input">
-						<input type="text" value={this.state.query} placeholder="Enter search (e.g. Alvarado)" onChange={(e) => this.updateSearch(e.target.value)}/>
+						<input type="text" value={this.state.query} placeholder="Search names" className="search-icon" onChange={(e) => this.updateSearch(e.target.value)}/>
 					</div>
 				</div>
 		    	<ol className="parks-list">

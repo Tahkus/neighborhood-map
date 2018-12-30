@@ -58,12 +58,7 @@ class App extends Component {
     this.state.showSideBar ? this.setState({showSideBar: false}) : this.setState({showSideBar: true})
   }
 
-/*  // Update query
-  updateQuery = (query) => {
-    this.setState({ query: query.trim() }, console.log(this.state.query))
-  }
-*/
-  // Update active markers array
+  // Remove markers based on query changes
   updateMarkers = (query) => {
     const activeMarkers = this.state.markers
     if (query) {
@@ -149,8 +144,8 @@ class App extends Component {
       <div className="App">
         <main>
           <Header updateSideBar={this.sideBarState} />
+          {sideBar ? <div id="map" aria-label="parks map"></div> : <div id="map-full" aria-label="parks map"></div>}
           {sideBar && <SideBar onListClick={this.onListClick} showSideBar={this.showSideBar} parks={this.state.markers} showingParks={this.state.showingParks} updateMarkers={this.updateMarkers} />}
-          {sideBar ? <div id="map"></div> : <div id="map-full"></div>}
         </main>
       </div>
     );
