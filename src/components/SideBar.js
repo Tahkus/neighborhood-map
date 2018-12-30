@@ -17,15 +17,15 @@ class SideBar extends Component {
 	}
 
   render() {
-  	let showingListItems
+  	let showingParks
   	if (this.state.query) {
   		const match = new RegExp(escapeRegExp(this.state.query), 'i')
-  		showingListItems = this.props.parks.filter((item) => match.test(item.title))
+  		showingParks = this.props.parks.filter((item) => match.test(item.title))
   	} else {
-  		showingListItems = this.props.parks
+  		showingParks = this.props.parks
   	}
 
-  	showingListItems.sort(sortBy('title'))
+  	showingParks.sort(sortBy('title'))
 
 	return (
 	  <div className="side-bar">
@@ -38,7 +38,7 @@ class SideBar extends Component {
 				</div>
 			</div>
 	    <ol className="parks-list">
-		  {showingListItems.map(park =>
+		  {showingParks.map(park =>
 		    <ListItem key={park.id} park={park} onListClick={this.props.onListClick} />
 		  )}
 	    </ol>
