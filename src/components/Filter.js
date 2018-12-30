@@ -10,7 +10,7 @@ class Filter extends Component {
 	}
 
 	updateQuery = (query) => {
-		this.setState({ query: query }, this.props.filterParks(this.state.query))
+		this.setState({ query: query.trim() }, this.props.filterParks(this.state.query))
 	}
 
 	render() {
