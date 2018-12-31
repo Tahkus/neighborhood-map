@@ -17,7 +17,7 @@ class App extends Component {
     markers: [],
     showSideBar: true,
     mapFull: false,
-    query: ''
+    query: '',
   }
 
 // Calls the getParks function upon component mounting
@@ -135,6 +135,7 @@ class App extends Component {
     ${filterMarker.formattedAddress[0]} <br>
     ${filterMarker.formattedAddress[1]} <br>
     <p><em>Location provided by FourSquare.</em></p>`
+
     const infoWindow = new window.google.maps.InfoWindow()
 
     filterMarker.setAnimation(window.google.maps.Animation.BOUNCE)
