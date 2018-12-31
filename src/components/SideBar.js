@@ -27,18 +27,18 @@ class SideBar extends Component {
 		showing.sort(sortBy('title'))
 
 		return (
-		    <div className="side-bar">
+		    <nav className="side-bar" aria-label="list of parks side-bar">
 		    	<div className="filter-bar">
 					<div className="filter-input">
 						<input type="text" value={this.state.query} placeholder="Search names" className="search-icon" onChange={(e) => this.updateSearch(e.target.value)}/>
 					</div>
 				</div>
-		    	<ol className="parks-list">
+		    	<ol className="parks-list" aria-label="list items">
 			  	{showing.map(park =>
 			    	<ListItem key={park.id} park={park} onListClick={this.props.onListClick} />
 			  	)}
 		    	</ol>
-		    </div>
+		    </nav>
 		)
 	}
 }

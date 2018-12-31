@@ -36,8 +36,8 @@ button:hover, button:focus {
   cursor: pointer;
 }
 
-p, h1 {
-  line-height: 0.5em;
+p {
+  line-height: 0em;
 }
 
 .header {

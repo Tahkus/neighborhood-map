@@ -20,6 +20,10 @@ class App extends Component {
     query: ''
   }
 
+// Calls the getParks function upon component mounting
+  componentWillMount() {
+    document.title = 'Adventure Mamas Park Guide'
+  }
   // Calls the getParks function upon component mounting
   componentDidMount() {
     this.getParks()
@@ -97,7 +101,8 @@ class App extends Component {
 
       const contentString = `${park.venue.name} <br>
       ${park.venue.location.formattedAddress[0]} <br>
-      ${park.venue.location.formattedAddress[1]}` 
+      ${park.venue.location.formattedAddress[1]} <br>
+      <p><em>Location provided by FourSquare.</em></p>` 
 
 
       // Create a marker
@@ -128,7 +133,8 @@ class App extends Component {
     const filterMarker = markers.filter((marker) => marker.id === item.id)[0]
     const contentString = `${filterMarker.title} <br>
     ${filterMarker.formattedAddress[0]} <br>
-    ${filterMarker.formattedAddress[1]}` 
+    ${filterMarker.formattedAddress[1]} <br>
+    <p><em>Location provided by FourSquare.</em></p>`
     const infoWindow = new window.google.maps.InfoWindow()
 
     filterMarker.setAnimation(window.google.maps.Animation.BOUNCE)
@@ -144,7 +150,7 @@ class App extends Component {
       <div className="App">
         <main>
           <Header updateSideBar={this.sideBarState} />
-          {sideBar ? <div id="map" aria-label="parks map"></div> : <div id="map-full" aria-label="parks map"></div>}
+          {sideBar ? <section id="map" role="application" aria-label="map"></section> : <section id="map-full" role="application" aria-label="map"></section>}
           {sideBar && <SideBar onListClick={this.onListClick} showSideBar={this.showSideBar} parks={this.state.markers} showingParks={this.state.showingParks} updateMarkers={this.updateMarkers} />}
         </main>
       </div>
