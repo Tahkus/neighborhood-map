@@ -30,3 +30,4 @@ This project was created using:
 
 * [Udacity | Neighborhood Map - Project Explained](https://www.youtube.com/playlist?list=PLgOB68PvvmWCGNn8UMTpcfQEiITzxEEA1)
 * [Conditional-Rendering](https://reactjs.org/docs/conditional-rendering.html)
+* [Student Hub](https://study-hall.udacity.com/sg-534769-9999/rooms/community:nd001:534769-cohort-9999-project-1351/community:thread-11246650002-404952?contextType=room)

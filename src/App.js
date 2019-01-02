@@ -18,6 +18,7 @@ class App extends Component {
     showSideBar: true,
     mapFull: false,
     query: '',
+    infowindow: null
   }
 
 // Calls the getParks function upon component mounting
@@ -142,6 +143,10 @@ class App extends Component {
     setTimeout(() => {filterMarker.setAnimation(-1)}, 1400)
     infoWindow.setContent(contentString)
     infoWindow.open(this.state.map, filterMarker);
+    if (this.state.infowindow) {
+      this.state.infowindow.close();
+    }
+    this.setState(() => ({ infowindow: infoWindow}))
   }
 
   render() {
