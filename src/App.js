@@ -54,9 +54,7 @@ class App extends Component {
         }, this.loadMap())
       })
       .catch(error => {
-        this.setState({
-          parks: []
-        }, this.loadMap())
+        alert("Oops! An error occured getting locations from FourSquare.")
       })
   }
 
@@ -153,6 +151,7 @@ class App extends Component {
 
   render() {
     const sideBar = this.state.showSideBar;
+    const parks = this.state.parks;
 
     return (
       <div className="App">
@@ -173,6 +172,9 @@ function loadScript(url) {
   script.src = url
   script.async = true
   script.defer = true
+  script.onerror = function() {
+    alert("Error loading map: " + this.src)
+  }
   index.parentNode.insertBefore(script, index)
 }
 
