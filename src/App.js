@@ -54,7 +54,9 @@ class App extends Component {
         }, this.loadMap())
       })
       .catch(error => {
-        console.log("Error! " + error)
+        this.setState({
+          parks: []
+        }, this.loadMap())
       })
   }
 
