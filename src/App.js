@@ -151,7 +151,6 @@ class App extends Component {
 
   render() {
     const sideBar = this.state.showSideBar;
-    const parks = this.state.parks;
 
     return (
       <div className="App">

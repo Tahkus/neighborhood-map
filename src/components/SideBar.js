@@ -29,9 +29,9 @@ class SideBar extends Component {
 		return (
 		    <nav className="side-bar" aria-label="list of parks side-bar">
 		    	<div className="filter-bar">
-					<div className="filter-input">
-						<input type="text" value={this.state.query} placeholder="Search names" className="search-icon" onChange={(e) => this.updateSearch(e.target.value)}/>
-					</div>
+					<form className="filter-input">
+						<input type="text" value={this.state.query} placeholder="Search names" onChange={(e) => this.updateSearch(e.target.value)}/>
+					</form>
 				</div>
 		    	<ol className="parks-list" aria-label="list items">
 			  	{showing.map(park =>

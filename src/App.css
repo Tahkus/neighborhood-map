@@ -40,6 +40,15 @@ p {
   line-height: 0em;
 }
 
+.hidden {
+  position:absolute;
+  left:-10000px;
+  top:auto;
+  width:1px;
+  height:1px;
+  overflow:hidden;
+}
+
 .header {
   text-align: center;
   color: white;
