@@ -156,7 +156,7 @@ class App extends Component {
       <div className="App">
         <main>
           <Header updateSideBar={this.sideBarState} />
-          {sideBar ? <section id="map" role="application" aria-label="map"></section> : <section id="map-full" role="application" aria-label="map"></section>}
+          {sideBar ? <section id="map" role="application" aria-label="map" alt="map"></section> : <section id="map-full" role="application" aria-label="map" alt="map"></section>}
           {sideBar && <SideBar onListClick={this.onListClick} showSideBar={this.showSideBar} parks={this.state.markers} showingParks={this.state.showingParks} updateMarkers={this.updateMarkers} />}
         </main>
       </div>

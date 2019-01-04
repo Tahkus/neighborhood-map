@@ -23,6 +23,10 @@ This project was created using:
 * [escapme-string-regexp](https://www.npmjs.com/package/escape-string-regexp)
 * [sort-by](https://www.npmjs.com/package/sort-by)
 
+## Service Worker
+
+The service worker for this app will only work when in production mode. You can find out more about production mode [here](https://medium.com/@baphemot/understanding-react-deployment-5a717d4378fd).
+
 ## Resources Used
 
 * [Udacity | Neighborhood Map - Project Explained](https://www.youtube.com/playlist?list=PLgOB68PvvmWCGNn8UMTpcfQEiITzxEEA1)
