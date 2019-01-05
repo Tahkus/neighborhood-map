@@ -23,9 +23,32 @@ This project was created using:
 * [escapme-string-regexp](https://www.npmjs.com/package/escape-string-regexp)
 * [sort-by](https://www.npmjs.com/package/sort-by)
 
+## Scripts
+
+In the project directory you may run the following from the command line:
+
+`npm start`
+Runs the app in development mode.
+Open http://localhost:3000 to view it in the browser.
+
+The page will automatically reload if you make changes to the code.
+
+`npm test`
+Runs the test watcher in an interactive mode.
+By default, runs tests related to files changed since the last commit.
+
+`npm run build`
+Builds the app for production to the build folder.
+It correctly bundles React in production mode and optimizes the build for the best performance.
+
+The build is minified and the filenames include the hashes.
+Your app is ready to be deployed.
+
+To learn more see [Create Reace App documentation](https://facebook.github.io/create-react-app/docs/getting-started) and the [deployment](https://facebook.github.io/create-react-app/docs/deployment) section.
+
 ## Service Worker
 
-The service worker for this app will only work when in production mode. You can find out more about production mode [here](https://medium.com/@baphemot/understanding-react-deployment-5a717d4378fd).
+The service worker for this app will only work when in production mode. Please refer to the Scripts section for information about getting the app in production mode.
 
 ## Resources Used
 
